@@ -5,4 +5,5 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-        return sorted(s) == sorted(t)  # Sorting both strings and comparing them
+        from collections import Counter
+        return Counter(s) == Counter(t)
