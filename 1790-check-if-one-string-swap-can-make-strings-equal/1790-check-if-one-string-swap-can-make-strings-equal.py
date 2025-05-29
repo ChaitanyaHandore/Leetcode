@@ -6,10 +6,11 @@ class Solution(object):
         :rtype: bool
         """
         if s1 == s2:
-            return True  # Already equal
+            return True
+
+        diffs = []
+        for i in range(len(s1)):
+            if s1[i] != s2[i]:
+                diffs.append((s1[i], s2[i]))
         
-        # Find indices where characters differ
-        c_diffs = [(c_x, c_y) for c_x, c_y in zip(s1, s2) if c_x != c_y]
-        
-        # Must have exactly two differences and swapping them should match
-        return len(c_diffs) == 2 and c_diffs[0] == c_diffs[1][::-1]
+        return len(diffs) == 2 and diffs[0] == diffs[1][::-1]
