@@ -13,4 +13,4 @@ class Solution(object):
             else:
                 if i.lower() in word:
                     c+=1
-        return c/2
+        return c//2
