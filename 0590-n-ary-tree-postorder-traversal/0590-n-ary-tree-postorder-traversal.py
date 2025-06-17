@@ -17,7 +17,7 @@ class Solution(object):
         result = []
         def dfs(node):
             
-            for child in node.children or []:
+            for child in node.children:
                 dfs(child)
             result.append(node.val)
         dfs(root)
