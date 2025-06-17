@@ -12,10 +12,11 @@ class Solution(object):
         :type root: Node
         :rtype: List[int]
         """
+        if not root:
+            return
         result = []
         def dfs(node):
-            if not node:
-                return
+            
             for child in node.children or []:
                 dfs(child)
             result.append(node.val)
