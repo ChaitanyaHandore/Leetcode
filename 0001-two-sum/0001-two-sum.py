@@ -5,17 +5,9 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        num_map = {}  # Dictionary to store the numbers and their indices
+        pair_idx = {}
 
         for i, num in enumerate(nums):
-            complement = target - num
-            if complement in num_map:
-                return [num_map[complement], i]
-            num_map[num] = i
-
-        return []  # In case no solution is found
-
-solution = Solution()
-nums = [2, 7, 11, 15]
-target = 9
-print(solution.twoSum(nums, target))
+            if target - num in pair_idx:
+                return [i, pair_idx[target - num]]
+            pair_idx[num] = i
