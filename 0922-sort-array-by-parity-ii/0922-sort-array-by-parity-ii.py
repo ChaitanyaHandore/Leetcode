@@ -1,15 +1,14 @@
-class Solution(object):
-    def sortArrayByParityII(self, nums):
-        new = [0] * len(nums)
-        e = 0 ; o = 1
-
-        for i in nums:
-            if i % 2 == 0:
-                new[e] = i
-                e += 2
+class Solution:
+    def sortArrayByParityII(self, nums: List[int]) -> List[int]:
+        even = []
+        odd = []
+        lst=[]
+        for i in range(len(nums)):
+            if nums[i]%2 == 0:
+                even.append(nums[i])
             else:
-                new[o] = i
-                o += 2
-
-        return new
-        
+                odd.append(nums[i])
+        for i in range(len(even)):
+            lst.append(even[i])
+            lst.append(odd[i])
+        return lst
