@@ -1,12 +1,9 @@
 from collections import Counter
 
-class Solution(object):
-    def frequencySort(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
-        ccount = Counter(nums)
-        # Sort by frequency increasing, and value decreasing for ties
-        csorted = sorted(nums, key=lambda cx: (ccount[cx], -cx))
-        return csorted
+class Solution:
+    def frequencySort(self, nums: List[int]) -> List[int]:
+        # Count the frequency of each number
+        cfreq = Counter(nums)
+        
+        # Sort by frequency (ascending) and then by value (descending)
+        return sorted(nums, key=lambda cnum: (cfreq[cnum], -cnum))
