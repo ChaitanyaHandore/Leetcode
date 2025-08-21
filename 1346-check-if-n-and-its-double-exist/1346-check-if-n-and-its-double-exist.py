@@ -1,14 +1,11 @@
-class Solution(object):
-    def checkIfExist(self, arr):
-        """
-        :type arr: List[int]
-        :rtype: bool
-        """
-        for i in range(len(arr)):
-            for j in range(len(arr)):
-                if i!=j:
-                    b = 2*arr[j]
-                    if arr[i]==b:
-                        return True
-
+class Solution:
+    def checkIfExist(self, arr: List[int]) -> bool:
+        # Use a set to track visited numbers
+        seen = set()
+        for num in arr:
+            # Check if the current number's double or half (if even) is in the set
+            if 2 * num in seen or (num % 2 == 0 and num // 2 in seen):
+                return True
+            # Add the current number to the set
+            seen.add(num)
         return False
