@@ -3,21 +3,24 @@ class Solution:
         r = []
         nums.sort()
         
-        for l,a in enumerate(nums):
-            if l >0 and nums[l-1]==a:
+        for i, a in enumerate(nums):
+            if i > 0 and nums[i - 1] == a:
                 continue
             
-            i = l+1
-            j = len(nums)-1
-            while i<j:
-                s = a + nums[i]+nums[j]
-                if s>0:
-                    j-=1
-                elif s<0:
-                    i+=1
+            l = i + 1
+            j = len(nums) - 1
+            while l < j:
+                s = a + nums[l] + nums[j]
+                if s > 0:
+                    j -= 1
+                elif s < 0:
+                    l += 1
                 else:
-                    r.append([a,nums[i],nums[j]])
-                    i+=1
-                    while nums[i]==nums[i-1] and i<j:
-                        i+=1
+                    r.append([a, nums[l], nums[j]])
+                    l += 1
+                    j -= 1
+                    while l < j and nums[l] == nums[l - 1]:
+                        l += 1
+                    while l < j and nums[j] == nums[j + 1]:
+                        j -= 1
         return r
