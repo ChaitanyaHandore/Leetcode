@@ -3,11 +3,11 @@ class Solution:
         r = []
         nums.sort()
         
-        for i,a in enumerate(nums):
-            if i >0 and nums[i-1]==a:
+        for l,a in enumerate(nums):
+            if l >0 and nums[l-1]==a:
                 continue
             
-            i = i+1
+            i = l+1
             j = len(nums)-1
             while i<j:
                 s = a + nums[i]+nums[j]
