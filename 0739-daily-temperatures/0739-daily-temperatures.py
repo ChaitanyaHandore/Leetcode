@@ -1,24 +1,20 @@
-from collections import deque
-
 class Solution:
-    def dailyTemperatures(self, temperatures):
-        deq = deque()
-        res = [0] * len(temperatures)
-
-        for i in range(len(temperatures) - 1, -1, -1):
-            if not deq:
-                deq.appendleft(i)
-                res[i] = 0
-            else:
-                while deq and temperatures[i] >= temperatures[deq[0]]:
-                    deq.popleft()
-
-                if not deq:
-                    res[i] = 0
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        r = []
+        for i in range(len(temperatures)):
+            c = 0
+            for j in range(i,len(temperatures)):
+                if i==j:
+                    continue
                 else:
-                    res[i] = deq[0] - i
+                    if temperatures[i]<temperatures[j]:
+                        c+=1
+                        r.append(c)
+                        break
+                    else:
+                        c+=1
 
-                deq.appendleft(i)
-
-        return res
-
+        if len(temperatures)!=len(r):
+            a = len(temperatures)-len(r)
+            r = r+[0]*a
+        return r
