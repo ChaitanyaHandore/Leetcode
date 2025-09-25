@@ -1,16 +1,16 @@
-from typing import List
-
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        n = len(temperatures)
-        res = [0] * n               # result array initialized with 0s
-        stack = []                  # stack to hold indices
+        res = [0]* len(temperatures)
+        stack = []
 
-        for i, temp in enumerate(temperatures):
-            # While current temperature is warmer than the last stacked one
-            while stack and temp > temperatures[stack[-1]]:
-                prev_index = stack.pop()
-                res[prev_index] = i - prev_index  # days waited
-            stack.append(i)        # push current day index
-        
+        for i,t in enumerate(temperatures):
+            while stack and t>temperatures[stack[-1]]:
+                stackind = stack.pop()
+                res[stackind]=(i - stackind)
+            stack.append(i)
         return res
+
+        # while stack and temperatures[stack[-1]]<t:
+        #         idx=stack.pop()
+        #         res[idx]=i-idx
+        #     stack.append(i)
