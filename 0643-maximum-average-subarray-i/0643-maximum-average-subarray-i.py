@@ -1,20 +1,17 @@
-class Solution(object):
-    def findMaxAverage(self, cnums, ck):
-        # Calculate the sum of the first window
-        cwindow_sum = sum(cnums[:ck])
-        cmax_sum = cwindow_sum
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        n = len(nums)
+        curr_sum = 0
 
-        # Slide the window over the array
-        for ci in range(ck, len(cnums)):
-            cwindow_sum += cnums[ci] - cnums[ci - ck]
-            cmax_sum = max(cmax_sum, cwindow_sum)
-
-        # Return the maximum average
-        return float(cmax_sum) / ck  # Ensure division returns float
+        for i in range(k):
+            curr_sum+=nums[i]
         
+        max_avg = curr_sum/k
 
-# Instantiate the Solution class and test the method
-solution = Solution()
-nums = [1, 12, -5, -6, 50, 3]
-k = 4
-print("{:.5f}".format(solution.findMaxAverage(nums, k)))  # Expected Output: 12.75000
+        for i in range(k,n):
+            curr_sum+=nums[i]
+            curr_sum-=nums[i-k]
+
+            avg = curr_sum/k
+            max_avg = max(max_avg,avg)
+        return max_avg
