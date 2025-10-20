@@ -1,22 +1,16 @@
-class Solution(object):
-    def productExceptSelf(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
-        clen = len(nums)
-        coutput = [1] * clen
-        
-        # First pass: left product
-        cleft_product = 1
-        for i in range(clen):
-            coutput[i] = cleft_product
-            cleft_product *= nums[i]
-        
-        # Second pass: right product
-        cright_product = 1
-        for i in range(clen - 1, -1, -1):
-            coutput[i] *= cright_product
-            cright_product *= nums[i]
-        
-        return coutput
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        res = [1] * n
+
+        prefix = 1
+        for i in range(n):
+            res[i] = prefix
+            prefix *= nums[i]
+
+        suffix = 1
+        for i in range(n - 1, -1, -1):
+            res[i] *= suffix
+            suffix *= nums[i]
+
+        return res
